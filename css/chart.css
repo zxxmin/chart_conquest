@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/earlyaccess/notosanskr.css");
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+ul,
+li,
+section,
+article {
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: transparent;
+  border: none;
+}
+
+html, body {
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+html body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-style: normal;
+  font-size: 1.6rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.container {
+  width: 120rem;
+  margin: 0 auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.container > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  white-space: nowrap;
+  margin-top: 1rem;
+}
+.container > ul li {
+  line-height: 2;
+  text-align: center;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.container > ul li.active {
+  font-weight: 700;
+  border: 0.1rem solid #333;
+  border-right: none;
+  border-radius: 1rem 0 0 1rem;
+  cursor: default;
+  position: relative;
+}
+.container > ul li.active::after {
+  content: "";
+  position: absolute;
+  right: -0.2rem;
+  top: 0;
+  width: 0.5rem;
+  height: 100%;
+  background-color: #fff;
+}
+
+section {
+  border: 0.1rem solid #333;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10rem;
+}
+section h1 {
+  font-size: 2rem;
+}
+
+.barGraphWrap h1 {
+  padding-bottom: 2rem;
+}
+.barGraphWrap > div {
+  width: 100%;
+  background: #fff;
+  position: relative;
+}
+.barGraphWrap > div .barGraph li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 5rem;
+  position: relative;
+  padding-left: 5.1rem;
+  z-index: 2;
+}
+.barGraphWrap > div .barGraph li span {
+  width: 5rem;
+  position: absolute;
+  left: 0;
+}
+.barGraphWrap > div .barGraph li div {
+  width: 0;
+  height: 3rem;
+  background: red;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors1 {
+  background-color: #2584FF;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors2 {
+  background-color: #3CD17D;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors3 {
+  background-color: #FFC738;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors4 {
+  background-color: #FF8080;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors5 {
+  background-color: #FF80BD;
+}
+.barGraphWrap > div .barGraph li div.barGraphColors6 {
+  background-color: #A46DF1;
+}
+.barGraphWrap > div .grid {
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 5rem;
+  border-left: 0.1rem solid gray;
+}
+.barGraphWrap > div .grid span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.barGraphWrap > div .grid span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-left: 0.1rem dashed gray;
+}
+.barGraphWrap > div .grid span:nth-of-type(1) {
+  left: 16.66%;
+}
+.barGraphWrap > div .grid span:nth-of-type(2) {
+  left: 33.32%;
+}
+.barGraphWrap > div .grid span:nth-of-type(3) {
+  left: 49.98%;
+}
+.barGraphWrap > div .grid span:nth-of-type(4) {
+  left: 66.64%;
+}
+.barGraphWrap > div .grid span:nth-of-type(5) {
+  left: 83.3%;
+}
+.barGraphWrap > div .grid span:nth-of-type(6) {
+  left: 99.96%;
+}
+.barGraphWrap > div .grid span:nth-of-type(7) {
+  left: 116.62%;
+}
+
+.pieGraphWrap div {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.pieGraphWrap div svg g path {
+  fill: transparent;
+  stroke-width: 2.5rem;
+}
+.pieGraphWrap div svg g text {
+  font-size: 1.2rem;
+  fill: #234997;
+}
+.pieGraphWrap div svg g.time circle {
+  fill: #F2F9FF;
+}
+.pieGraphWrap div svg g.time text.timeT {
+  font-size: 1.4rem;
+  fill: #0C0C0C;
+}
+.pieGraphWrap div svg g.time text.timeTxt {
+  font-size: 1.6rem;
+  fill: #2584FF;
+}
+.pieGraphWrap div svg g.toktokclass path {
+  stroke: #2583FF;
+}
+.pieGraphWrap div svg g.contents path {
+  stroke: #3CD17D;
+}
+.pieGraphWrap div svg g.textbook path {
+  stroke: #FF93C9;
+}
+.pieGraphWrap div svg g.aiLearning path {
+  stroke: #A46DF1;
+}
+.pieGraphWrap div svg g.mento path {
+  stroke: #FFC738;
+}
+.pieGraphWrap div svg g polyline {
+  fill: transparent;
+  stroke: #234997;
+  stroke-width: 0.05rem;
+}
+
+.halfPieGraphWrap div {
+  margin: 0 auto;
+}
+.halfPieGraphWrap div svg g path {
+  fill: transparent;
+  stroke-width: 2rem;
+  stroke: #FF80BD;
+  stroke-linecap: round;
+}
+.halfPieGraphWrap div svg g path.defaultGage {
+  stroke-width: 1.3rem;
+  stroke: #3CD17D;
+}
+.halfPieGraphWrap div svg g.days {
+  fill: #F2F9FF;
+}
+.halfPieGraphWrap div svg g.days text {
+  fill: #353535;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.halfPieGraphWrap div svg g.days text.freDaysT {
+  fill: #FF80BD;
+  font-size: 8rem;
+  font-weight: 700;
+}
+
+.lineGraphWrap .lineGraph {
+  width: 60rem;
+  padding: 0;
+  margin: 0 auto;
+}
+.lineGraphWrap .lineGraph polyline.a, .lineGraphWrap .lineGraph line.guide.a {
+  stroke: #A46DF1;
+}
+.lineGraphWrap .lineGraph polyline.b, .lineGraphWrap .lineGraph line.guide.b {
+  stroke: #3CD17D;
+}
+.lineGraphWrap .lineGraph polyline.c, .lineGraphWrap .lineGraph line.guide.c {
+  stroke: #FFC738;
+}
+.lineGraphWrap .lineGraph polyline.d, .lineGraphWrap .lineGraph line.guide.d {
+  stroke: #FF80BD;
+}
+.lineGraphWrap .lineGraph g.panel line {
+  stroke: gray;
+  stroke-width: 0.1rem;
+  stroke-dasharray: 6 5;
+}
+.lineGraphWrap .lineGraph g.panel line.guide {
+  stroke-width: 0.4rem;
+  stroke-dasharray: 1 0;
+}
+.lineGraphWrap .lineGraph g.panel text {
+  font-size: 1.2rem;
+}
+.lineGraphWrap .lineGraph g.gage circle {
+  fill: #fff;
+  stroke: #676666;
+}
+.lineGraphWrap .lineGraph g.gage polyline {
+  fill: transparent;
+  stroke-width: 0.3rem;
+}
+
+.raderGraph polygon.avg, .raderGraph line.guide.avg {
+  stroke: #6C6A6A;
+  stroke-dasharray: 3 2;
+}
+.raderGraph polygon.gage, .raderGraph line.guide.gage {
+  stroke: #FFB7D9;
+}
+.raderGraph g.panel circle.grid:nth-of-type(1) {
+  fill: rgba(255, 247, 247, 0.7);
+}
+.raderGraph g.panel circle.grid:nth-of-type(2) {
+  fill: rgba(255, 239, 239, 0.7);
+}
+.raderGraph g.panel circle.grid:nth-of-type(3) {
+  fill: #FFE8E9;
+}
+.raderGraph g.panel line {
+  stroke: #FFE6E7;
+}
+.raderGraph g.panel line.guide.avg {
+  stroke-width: 0.2rem;
+}
+.raderGraph g.panel line.guide.gage {
+  stroke-width: 0.4rem;
+}
+.raderGraph g.panel text {
+  font-size: 1.2rem;
+}
+.raderGraph g.gage polygon.avg {
+  fill: transparent;
+}
+.raderGraph g.gage polygon.gage {
+  stroke-width: 0.2rem;
+  fill: rgba(255, 224, 225, 0.3);
+}
+.raderGraph g.gage circle.a {
+  fill: #A46DF1;
+}
+.raderGraph g.gage circle.b {
+  fill: #3CD17D;
+}
+.raderGraph g.gage circle.c {
+  fill: #FFC738;
+}
+.raderGraph g.gage circle.d {
+  fill: #FF80BD;
+}/*# sourceMappingURL=chart.css.map */

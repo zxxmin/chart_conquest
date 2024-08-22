@@ -1,0 +1,444 @@
+@import url("https://fonts.googleapis.com/earlyaccess/notosanskr.css");
+
+@mixin blind {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+@mixin btn {
+    cursor: pointer;
+    // font-family: 'Noto Sans KR';
+    font-family: "pretendard", sans-serif;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    height: auto;
+}
+
+$barGraphColors: (
+    #2584FF,
+    #3CD17D,
+    #FFC738,
+    #FF8080,
+    #FF80BD,
+    #A46DF1
+);
+
+html,
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+ul,
+li,
+section,
+article {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+select {
+    appearance: none;
+    background: transparent;
+    border: none;
+}
+
+html, body { height: 100%; }
+
+html {
+    font-size: 62.5%;
+
+    body {
+        font-family: 'Noto Sans KR', sans-serif;
+        font-style: normal;
+        font-size: 1.6rem;
+        box-sizing: border-box;
+
+        user-select: none;
+    }
+}
+
+.container {
+    width: 120rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+
+    > ul {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+        margin-top: 1rem;
+
+        li {
+            line-height: 2;
+            text-align: center;
+            padding: 1rem 3rem;
+            cursor: pointer;
+            box-sizing: border-box;
+            
+            
+            &.active {
+                font-weight: 700;
+                border: .1rem solid #333;
+                border-right: none;
+                border-radius: 1rem 0 0 1rem;
+                cursor: default;
+                position: relative;
+
+                &::after{
+                    content: '';
+                    position: absolute;
+                    right:-.2rem;
+                    top:0;
+                    width: .5rem;
+                    height: 100%;
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+
+section {
+    border: .1rem solid #333;
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+.barGraphWrap {
+    h1 {
+        padding-bottom: 2rem;
+    }
+
+    > div {
+        width: 100%;
+        background: #fff;
+        position: relative;
+
+        .barGraph {
+            li {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 5rem;
+                position: relative;
+                padding-left: 5.1rem;
+                z-index: 2;
+
+                span {
+                    width: 5rem;
+                    position: absolute;
+                    left: 0;
+                }
+
+                div {
+                    width: 0;
+                    height: 3rem;
+                    background: red;
+
+                    @for $colorIdx from 1 through 6 {
+                        &.barGraphColors#{$colorIdx} {
+                            background-color: nth($barGraphColors, $colorIdx);
+                        }
+                    }
+                }
+
+                // @for $i from 1 through 5 {
+                //     $j: $i + 5;
+                //     $k: $j + 5;
+                //     &:nth-child(#{$i}) > div,
+                //     &:nth-child(#{$j}) > div,
+                //     &:nth-child(#{$k}) > div {
+                //         background-color: nth($graphColors, $i);
+                //     }
+                // }
+            }
+        }
+
+        .grid {
+            pointer-events: none;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 5rem;
+            border-left: .1rem solid gray;
+
+            span {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-left: .1rem dashed gray;
+                }
+
+                @for $i from 1 through 7 {
+                    &:nth-of-type(#{$i}) {
+                        left: $i * 16.66%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pieGraphWrap {
+    div {
+        max-width: 60rem;
+        margin: 0 auto;
+
+        svg {
+            g {
+                path {
+                    fill: transparent;
+                    stroke-width: 2.5rem;
+                }
+                text {
+                    font-size: 1.2rem;
+                    fill: #234997;
+                }
+                &.time {
+                    circle {
+                        fill: #F2F9FF;
+                    }
+                    text {
+                        &.timeT {
+                            font-size: 1.4rem;
+                            fill: #0C0C0C;
+                        }
+                        &.timeTxt {
+                            font-size: 1.6rem;
+                            fill: #2584FF;
+                        }
+                    }
+                }
+                &.toktokclass {
+                    path {
+                        stroke: #2583FF;
+                    }
+                }
+                &.contents {
+                    path {
+                        stroke : #3CD17D;
+                    }
+                }
+                &.textbook {
+                    path {
+                        stroke : #FF93C9;
+                    }
+                }
+                &.aiLearning {
+                    path {
+                        stroke : #A46DF1;
+                    }
+                }
+                &.mento {
+                    path {
+                        stroke : #FFC738;
+                    }
+                }
+                polyline {
+                    fill: transparent;
+                    stroke: #234997;
+                    stroke-width: 0.05rem;
+                }
+            }
+        }
+    }
+}
+
+.halfPieGraphWrap {
+    div {
+        margin: 0 auto;
+        
+        svg {
+            g {
+                path {
+                    fill: transparent;
+                    stroke-width: 2rem;
+                    stroke: #FF80BD;
+                    stroke-linecap: round;
+
+                    &.defaultGage {
+                        stroke-width: 1.3rem;
+                        stroke: #3CD17D;
+                    }
+                }
+                &.days {
+                    fill: #F2F9FF;
+
+                    text {
+                        fill: #353535;
+                        font-size: 1.8rem;
+                        font-weight: 700;
+
+                        &.freDaysT {
+                            fill: #FF80BD;
+                            font-size: 8rem;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.lineGraphWrap {
+    .lineGraph {
+        width: 60rem;
+        // height: 24rem;
+        padding: 0;
+        margin: 0 auto;
+
+        polyline, line.guide {
+            &.a {
+                stroke : #A46DF1;
+            }
+            &.b {
+                stroke : #3CD17D;
+            }
+            &.c {
+                stroke : #FFC738;
+            }
+            &.d {
+                stroke : #FF80BD;
+            }
+        }
+
+        g.panel {
+            line {
+                stroke: gray;
+                stroke-width: .1rem;
+                stroke-dasharray: 6 5;
+
+                &.guide {
+                    stroke-width: 0.4rem;
+                    stroke-dasharray: 1 0;
+                }
+            }
+            text {
+                font-size: 1.2rem;
+            }
+        }
+        g.gage {
+            circle {
+                fill: #fff;
+                stroke: #676666;
+            }
+            polyline {
+                fill: transparent;
+                stroke-width: .3rem;
+            }
+        }
+    }
+}
+
+.raderGraph {
+    polygon, line.guide {
+        &.avg {
+            stroke: #6C6A6A;
+            stroke-dasharray: 3 2;
+        }
+        &.gage {
+            stroke: #FFB7D9;
+        }
+    }
+    g.panel {
+        circle.grid {
+            &:nth-of-type(1) {
+                fill : rgba(255, 247, 247, 0.7);
+            }
+            &:nth-of-type(2) {
+                fill : rgba(255, 239, 239, 0.7);
+            }
+            &:nth-of-type(3) {
+                fill : #FFE8E9;
+            }
+        }
+        line {
+            stroke : #FFE6E7;
+            &.guide {
+                &.avg {
+                    stroke-width: 0.2rem;
+                }
+                &.gage {
+                    stroke-width: 0.4rem;
+                }
+            }
+        }
+        text {
+            font-size: 1.2rem;
+        }
+    }
+    g.gage {
+        polygon {
+            &.avg {
+                fill: transparent;
+            }
+            &.gage {
+                stroke-width: 0.2rem;
+                fill : rgba(255, 224, 225, 0.3);
+            }
+        }
+        circle {
+            &.a {
+                fill : #A46DF1;
+            }
+            &.b {
+                fill : #3CD17D;
+            }
+            &.c {
+                fill : #FFC738;
+            }
+            &.d {
+                fill : #FF80BD;
+            }
+        }
+    }
+}
