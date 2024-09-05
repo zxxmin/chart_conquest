@@ -38,7 +38,32 @@ const DATA = [
                 courseNm: "미술",
                 score: 10,
             },
-        ]
+        ],
+        frequentlyTime: [
+            '1시~2시',
+            '5시~6시'
+        ],
+        utilization: [{
+            name: '톡톡클래스',
+            id: 'toktokclass',
+            ratio: 40
+        }, {
+            name: "톡톡콘텐츠",
+            id: "contents",
+            ratio: 20
+        }, {
+            name: "톡톡교과서",
+            id: "textbook",
+            ratio: 15
+        }, {
+            name: "톡톡AI학습",
+            id: "aiLearning",
+            ratio: 20
+        }, {
+            name: "AI도움쌤",
+            id: "mento",
+            ratio: 5
+        }],
     },
     {
         name: '학생2',
@@ -79,6 +104,31 @@ const DATA = [
                 courseNm: "미술",
                 score: 10,
             },
-        ]
+        ],
+        frequentlyTime: [
+            '10시~11시',
+            '3시~4시'
+        ],
+        utilization: [{
+            name: '톡톡클래스',
+            id: 'toktokclass',
+            ratio: 40
+        }, {
+            name: "톡톡콘텐츠",
+            id: "contents",
+            ratio: 20
+        }, {
+            name: "톡톡교과서",
+            id: "textbook",
+            ratio: 15
+        }, {
+            name: "톡톡AI학습",
+            id: "aiLearning",
+            ratio: 20
+        }, {
+            name: "AI도움쌤",
+            id: "mento",
+            ratio: 5
+        }],
     }
 ]
