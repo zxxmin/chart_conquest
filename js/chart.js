@@ -47,6 +47,8 @@ class drawChart {
 
         this.pieGraph = document.querySelector('article.pieGraphWrap > .pieGraph');
 
+        this.halfPieGraph = document.querySelector('article.halfPieGraphWrap > .halfPieGraph');
+
         this.createList();
     }
 
@@ -187,8 +189,101 @@ class drawChart {
             gage.classList.add('gage');
             gage.setAttribute("d",describeArc(x, y, r, t1, t2));
             g.append(gage);
+            const mkDeg = (t1 + ( t2 - t1 ) / 2) % 360;
+            const mk = document.createElementNS(svgNS, 'circle');
+            mk.setAttribute("cx", x);
+            mk.setAttribute("cy", cy);
+            mk.setAttribute("r", 2);
+            mk.setAttribute('style', `transform-origin:50% 50%;transform:rotate(${mkDeg}deg)`);
+            g.append(mk);
+
+            const mkLDeg = (mkDeg-90)%360;
+            const mkRadian = radian(mkLDeg);
+            const mkx0 = Math.cos(mkRadian) * r + x;
+            const mky0 = Math.sin(mkRadian) * r + y;
+            const mkx1 = Math.cos(mkRadian) * (r*1.18) + x;
+            const mky1 = Math.sin(mkRadian) * (r*1.18) + y;
+            let mkx2, tanchor;
+            if(mkLDeg > 90 && mkLDeg < 270) {
+                mkx2 = mkx1 - 6;
+                tanchor = 'end';
+            } else {
+                mkx2 = mkx1 + 6;
+                tanchor = 'start';
+            }
+            const mkLine = document.createElementNS(svgNS, 'polyline');
+            mkLine.setAttribute('points', `${mkx0},${mky0} ${mkx1},${mky1} ${mkx2},${mky1}`);
+            g.insertBefore(mkLine, mk);
+            const mkTag = createSvgText(mkx2, mky1, 'tag', `${v.name} ${v.ratio}%`);
+            mkTag.setAttributeNS(null, 'text-anchor', tanchor);
+            g.append(mkTag);
         })
 
+    }
+
+    drawHalfPieGraph () {
+        const svgW = 600;
+        const svgH = 400;
+        // const gageW = 190;
+        const gageW = 330;
+        const svg = document.createElementNS(svgNS, 'svg');
+        svg.setAttributeNS(null, 'viewBox', `0 0 ${svgW} ${svgH}`);
+        this.halfPieGraph.append(svg);
+
+        const x = svgW / 2,
+              y = svgH / 2,
+              cy = (svgH - gageW) / 2;
+
+        const days = document.createElementNS(svgNS, 'g');
+        days.classList.add('days');
+        svg.append(days);
+        const daysCont = document.createElementNS(svgNS, 'circle');
+        daysCont.setAttribute("cx", x);
+        daysCont.setAttribute("cy", y);
+        daysCont.setAttribute("r", 80);
+        days.append(daysCont);
+
+        // 내부 글자 추가
+        const freDays = Object.values(this.userData.frequentlyDays);
+
+        const monthAver = createSvgText(x, y - 100, 'monthAver', '한 달 평균');
+        days.append(monthAver);
+
+        const montT1 = createSvgText(x, y + 105, 'montT', '학습하고 있어요');
+        days.append(montT1);
+        
+        const dayT = createSvgText(x + 100, y + 15, 'dayT', '일');
+        days.append(dayT);
+        
+        if (freDays.length > 0) {
+            const freDaysT = createSvgText(x, y, 'freDaysT', freDays[0].ratio);
+            days.append(freDaysT);
+        } else {
+            const noDaysT = createSvgText(x, y, 'freDaysT', '없음');
+            days.append(noDaysT);
+        }
+
+
+        // outer pie graph
+        this.userData.frequentlyDays.forEach(v => {
+
+            const g = document.createElementNS(svgNS, 'g');
+            g.classList.add('monthDay');
+            svg.append(g);
+            const r = gageW / 2,
+                t1 = v.st + 180,
+                t2 = v.et + 180,
+                t3 = 330 + 180;
+            const defaultGage = document.createElementNS(svgNS, 'path');
+            defaultGage.classList.add('defaultGage');
+            defaultGage.setAttribute("d",describeArc(x, y, r, t1, t3));
+            g.append(defaultGage);
+
+            const gage = document.createElementNS(svgNS, 'path');
+            gage.classList.add('gage');
+            gage.setAttribute("d",describeArc(x, y, r, t1, t2));
+            g.append(gage);
+        });
     }
 
     drawContent () {
@@ -207,6 +302,18 @@ class drawChart {
         }
 
         this.drawPieGraph();
+
+        // half pie graph
+        this.halfPieGraph.innerHTML = "";
+
+        let start = 30;
+
+        for(let i = 0; i< this.userData.frequentlyDays.length; i++) {
+            this.userData.frequentlyDays[i].st = start;
+            this.userData.frequentlyDays[i].et = start + this.userData.frequentlyDays[i].ratio / 31 * 300;
+        }
+
+        this.drawHalfPieGraph();
     }
 
 }

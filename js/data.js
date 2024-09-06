@@ -44,25 +44,29 @@ const DATA = [
             '5시~6시'
         ],
         utilization: [{
-            name: '톡톡클래스',
+            name: 'a 사이트',
             id: 'toktokclass',
             ratio: 40
         }, {
-            name: "톡톡콘텐츠",
+            name: "b 사이트",
             id: "contents",
             ratio: 20
         }, {
-            name: "톡톡교과서",
+            name: "c 사이트",
             id: "textbook",
             ratio: 15
         }, {
-            name: "톡톡AI학습",
+            name: "d 사이트",
             id: "aiLearning",
             ratio: 20
         }, {
-            name: "AI도움쌤",
+            name: "e 사이트",
             id: "mento",
             ratio: 5
+        }],
+        frequentlyDays: [{
+            ratio: 20
+
         }],
     },
     {
@@ -110,25 +114,29 @@ const DATA = [
             '3시~4시'
         ],
         utilization: [{
-            name: '톡톡클래스',
+            name: 'a 사이트',
             id: 'toktokclass',
             ratio: 40
         }, {
-            name: "톡톡콘텐츠",
+            name: "b 사이트",
             id: "contents",
             ratio: 20
         }, {
-            name: "톡톡교과서",
+            name: "c 사이트",
             id: "textbook",
             ratio: 15
         }, {
-            name: "톡톡AI학습",
+            name: "d 사이트",
             id: "aiLearning",
             ratio: 20
         }, {
-            name: "AI도움쌤",
+            name: "e 사이트",
             id: "mento",
             ratio: 5
+        }],
+        frequentlyDays: [{
+            ratio: 15
+
         }],
     }
 ]
